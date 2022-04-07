@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#DAA520"><meta name="author" content="orcl"><meta name="copyright" content="orcl"><meta name="generator" content="Hexo 6.1.0"><meta name="theme" content="hexo-theme-yun"><title>大厂开发流程 | orclの盗梦空间</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.2.4/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/images/groot.ico"><link rel="mask-icon" href="/images/groot.ico" color="#DAA520"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"example.com","root":"/","title":["orcl","の","盗","梦","空","间"],"version":"1.8.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"想要搜些什么？","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["255, 69, 0","255, 215, 0","255, 182, 193"]},"waline":{"config":{"enable":true,"serverURL":"https://waline.sknplz.xyz","comment":true,"visitor":true,"avatarCDN":"https://sdn.geekzu.org/avatar/","placeholder":"填写邮箱也不一定会收到回复～","requiredFields":["nick"],"el":"#waline","lang":"zh-CN"},"cdn":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"html.dark"},"vendors":{"darken":"https://cdn.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="orclの盗梦空间" type="application/atom+xml"><meta name="description" content="其实对于几十人或者上百人一起开发一个项目的话，一个规范的研发流程是很重要的。 有的同学可能想，哪有这么多流程啊，就是写完代码，跑一下，没问题，然后就上线了。 其实在大厂里研发流程是很重要的。 一个项目从开发到上线到后面的维护，从流程上就保证大家少出错，也方便后面人继续维护。 那么接下来给大家介绍一下详细的流程。 1.需求文档看需求文档，我们要根据需求文档来确定我们究竟要做什么。 一些同学可能感觉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大厂开发流程">
+<meta property="og:url" content="http://example.com/2022/04/07/development-process/index.html">
+<meta property="og:site_name" content="orclの盗梦空间">
+<meta property="og:description" content="其实对于几十人或者上百人一起开发一个项目的话，一个规范的研发流程是很重要的。 有的同学可能想，哪有这么多流程啊，就是写完代码，跑一下，没问题，然后就上线了。 其实在大厂里研发流程是很重要的。 一个项目从开发到上线到后面的维护，从流程上就保证大家少出错，也方便后面人继续维护。 那么接下来给大家介绍一下详细的流程。 1.需求文档看需求文档，我们要根据需求文档来确定我们究竟要做什么。 一些同学可能感觉">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-07T09:17:49.000Z">
+<meta property="article:modified_time" content="2022-04-07T11:37:47.368Z">
+<meta property="article:author" content="orcl">
+<meta property="article:tag" content="进击大厂">
+<meta name="twitter:card" content="summary"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="orcl"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="orcl"><span class="site-author-status" title="永远积极向上">🐳</span></a><div class="site-author-name"><a href="/about/">orcl</a></div><span class="site-name">orclの盗梦空间</span><sub class="site-subtitle"></sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">2</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">2</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/orcl-zung" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://blog.csdn.net/lz_1014?type=blog" title="csdn" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-csdn-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:beyond_722@163.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/orclzung" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/358546333" title="bilibili" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3"><span class="toc-number">1.</span> <span class="toc-text">1.需求文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%BF%99%E4%B8%AA%E9%9C%80%E6%B1%82%E5%8C%85%E5%90%AB%E4%BA%86%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">2.这个需求包含了哪些功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%A1%AE%E5%AE%9A%E6%9C%89%E5%93%AA%E4%BA%9B%E9%9A%BE%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">3.确定有哪些难点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E7%94%BB%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">4.</span> <span class="toc-text">4.画架构图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%9A%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text">5.定协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%AE%BE%E8%AE%A1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">6.设计数据结构和算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E9%A2%84%E4%BC%B0%E4%B8%80%E4%B8%8B%E5%AE%B9%E9%87%8F"><span class="toc-number">7.</span> <span class="toc-text">7.预估一下容量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E8%80%83%E8%99%91%E9%83%A8%E7%BD%B2"><span class="toc-number">8.</span> <span class="toc-text">8.考虑部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E8%AE%BE%E8%AE%A1%E8%AF%84%E5%AE%A1"><span class="toc-number">9.</span> <span class="toc-text">9.设计评审</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-number">10.</span> <span class="toc-text">10.写代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-%E8%87%AA%E6%B5%8B"><span class="toc-number">11.</span> <span class="toc-text">11.自测</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-%E8%81%94%E8%B0%83"><span class="toc-number">12.</span> <span class="toc-text">12.联调</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-%E4%BA%A4%E7%BB%99%E6%B5%8B%E8%AF%95"><span class="toc-number">13.</span> <span class="toc-text">13.交给测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-code-review"><span class="toc-number">14.</span> <span class="toc-text">14.code review</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-%E5%90%88%E5%85%A5%E4%B8%BB%E5%B9%B2"><span class="toc-number">15.</span> <span class="toc-text">15.合入主干</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16-%E5%8F%91%E5%B8%83"><span class="toc-number">16.</span> <span class="toc-text">16.发布</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">17.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#DAA520;"><link itemprop="mainEntityOfPage" href="http://example.com/2022/04/07/development-process/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="orcl"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="orclの盗梦空间"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">大厂开发流程</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-04-07 17:17:49" itemprop="dateCreated datePublished" datetime="2022-04-07T17:17:49+08:00">2022-04-07</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">3.2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">10m</span></span></span><span class="leancloud_visitors" id="/2022/04/07/development-process/" data-flag-title="大厂开发流程"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2022/04/07/development-process/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%95%A5%E7%9F%A5%E4%B8%80%E4%BA%8C/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">略知一二</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E8%BF%9B%E5%87%BB%E5%A4%A7%E5%8E%82/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">进击大厂</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>其实对于几十人或者上百人一起开发一个项目的话，一个规范的研发流程是很重要的。</p>
+<p>有的同学可能想，哪有这么多流程啊，就是写完代码，跑一下，没问题，然后就上线了。</p>
+<p>其实在大厂里研发流程是很重要的。</p>
+<p>一个项目从开发到上线到后面的维护，从流程上就保证大家少出错，也方便后面人继续维护。</p>
+<p>那么接下来给大家介绍一下详细的流程。</p>
+<h1 id="1-需求文档"><a href="#1-需求文档" class="headerlink" title="1.需求文档"></a>1.需求文档</h1><p>看需求文档，我们要根据需求文档来确定我们究竟要做什么。</p>
+<p>一些同学可能感觉 为什么还要用一个需求文档呢，你就告诉我做啥我就做啥不就完事了。</p>
+<p>其实需求文档一方面是倒逼产品经理去系统性的思考这个需求究竟有哪些功能，用来满足哪些用户的需求。</p>
+<p>另一方面，是保证我们在研发的时候，研发出来的功能是满足需求文档里所描述的。</p>
+<p>如果是口头对接的话，很有可能就是你做出来的东西，产品经理看完感觉：这和我说的需求不一样啊！！这和我想的不一样啊！！</p>
+<p>这样就是两个人相互甩锅，那这究竟是谁的锅呢。都没有一个证据，对吧。</p>
+<p>所以说，有一个需求文档很重要。</p>
+<p>而且每个阶段的需求文档相当于是把这个项目的整个迭代过程都记录下来了。</p>
+<p>这样也方便后面的人，了解这个项目是如何迭代的。</p>
+<h1 id="2-这个需求包含了哪些功能"><a href="#2-这个需求包含了哪些功能" class="headerlink" title="2.这个需求包含了哪些功能"></a>2.这个需求包含了哪些功能</h1><p>产品经理在需求文档里描述一个功能，那么我们在实现的时候，可能要改很多模块，或者说我们要增加一些模块。</p>
+<p>就是我们从代码的角度上来讲，可能要增添很多功能才能满足 用户看起来好像微不足道的小功能。</p>
+<p>例如点击登录，点击下单，后台都有很多模块协同运行的。</p>
+<p>我们要把产品经理角度上的这个功能，拆解为我们代码角度上的具体应该开发的那些功能。</p>
+<h1 id="3-确定有哪些难点"><a href="#3-确定有哪些难点" class="headerlink" title="3.确定有哪些难点"></a>3.确定有哪些难点</h1><p>这里可能有同学疑惑了，我确定这东西干嘛呢。</p>
+<p>给大家举一个例子，给你一个需求文档。</p>
+<p>你说你一周的时间就能把它开发完，那为什么是一周呢，为什么不是两天，为什么不是两周呢。</p>
+<p>其实 和上面的领导汇报你的工作的时候 都要把自己的工作进行量化。</p>
+<p>那么这个功能有哪些难点，我们要克服这个难点，所需要花费的时间，都要有一个大体的量化。</p>
+<p>这样才能量化我们自己的工作，领导其实不知道你的工作是简单 还是困难, 领导只在意最终结果，所以你要展现给领导你的工作是有难度的是有挑战的。</p>
+<p>而且这些也是我们年底用来晋升或者评职称的素材。</p>
+<p>如果这些东西你自己都不在乎的话，谁还会帮你在乎呢。</p>
+<p>而且确定了自己的工作难点，把这些难点都记录下来，对以后跳槽也很有帮助。</p>
+<p>面试官最喜欢问的问题，就是：你做的项目中有哪些难点？以及你是如何克服的。</p>
+<p>所以这一步对自己个人成长来说也是很有重要的。 对于项目组来说也是记录下来，每一个迭代版本有哪些难点，这些难点团队是如何克服的。</p>
+<p>这也是项目组往上一级去邀功的资料。</p>
+<h1 id="4-画架构图"><a href="#4-画架构图" class="headerlink" title="4.画架构图"></a>4.画架构图</h1><p>一般来说，大厂项目的架构都是比较复杂的，特别是后端架构。</p>
+<p>如果添加一个模块连个文档都没有，连个图也没有，上来就添加的话，后面的人是很难维护的。</p>
+<p>而且每个模块和每一个模块之间的依赖关系，如果没有画出一个架构图的话，直接看代码很容易直接就看懵了。</p>
+<p>为什么你可以快速开发一个新的模块，也是因为之前团队有人把这个架构图画清楚了，你只需要看一眼这个架构图，就知道你的模块应该添加在哪里。</p>
+<p>那么你去添加模块的时候，也应该把这个架构图相应的位置 完善一下。</p>
+<p>同时呢，在画架构图的过程中，也增添了自己对整个系统架构的掌握程度。</p>
+<p>这个图也会让你确定，你的模块在整个项目中扮演一个什么样的角色。</p>
+<h1 id="5-定协议"><a href="#5-定协议" class="headerlink" title="5.定协议"></a>5.定协议</h1><p>后台模块之间进行通讯需要协议，后台和前端通讯也需要协议。</p>
+<p>所以只要有交互，就要确定协议的数据格式。</p>
+<p>定协议要考虑到兼容，要考虑易于维护。</p>
+<h1 id="6-设计数据结构和算法"><a href="#6-设计数据结构和算法" class="headerlink" title="6.设计数据结构和算法"></a>6.设计数据结构和算法</h1><p>其实设计数据结构更多一些，因为我们要选择使用什么容器，什么格式来处理我们的数据。</p>
+<p>至于算法的话，就很少我们亲自设计了。</p>
+<p>什么快排，二叉树，动态规划，最短路啥的，在实际开发中，都不需要我们自己去写，直接调包！</p>
+<p>面试造火箭，工作拧螺丝 就体现在这里。</p>
+<p>为什么会这样呢？ 一个很简单的例子，互联网研发讲究其实就是要快，例如一个功能2天就要开发完，如果算法都要自己去写的话，等都写完了，花都谢了。</p>
+<h1 id="7-预估一下容量"><a href="#7-预估一下容量" class="headerlink" title="7.预估一下容量"></a>7.预估一下容量</h1><p>特别是后端开发，要估计出 我们自己模块大体需要多大磁盘，多大内存，多大带宽，多少核CPU。</p>
+<p>这也是没有做过研发工作的同学经常忽略的，因为大家好像默认 磁盘、内存、带宽、cpu是无穷的。</p>
+<p>其实我们在设计一个模块的时候，这些都要评估的，不能模块一上线，把机器直接打爆了，例如 直接把带宽打满了，不仅影响自己的模块功能，还影响了机器上其他模块的运行。</p>
+<h1 id="8-考虑部署"><a href="#8-考虑部署" class="headerlink" title="8.考虑部署"></a>8.考虑部署</h1><p>要考虑如果一台机器挂了（可能是硬件原因），那么我们的模块还能不能正常提供服务。</p>
+<p>这就是考虑模块的容灾性，一般都是采用分布式，服务部署在三台机器上，一台如果挂了，还有其他两台提供服务。</p>
+<p>还有就是要弹性可伸缩，即我们的模块可不可以直接 部署多台机器来提高承载能力。</p>
+<p>如果用户量突然上来了，或者流量突然上来了，可以通过快速部署多台机器来抗住流量。而不是模块只能在单机上跑，多部署几台就发生各种问题。</p>
+<p>这才能说明是有足够强的风险意识的。</p>
+<h1 id="9-设计评审"><a href="#9-设计评审" class="headerlink" title="9.设计评审"></a>9.设计评审</h1><p>前八的阶段其实都是设计阶段，那么你的设计需要让组里的同学一起来评审一下，看看有没有什么问题。</p>
+<p>大家主要也是看看你的模块 会不会给其他模块或者整个系统带来什么问题 以及 设计的是否合理。</p>
+<h1 id="10-写代码"><a href="#10-写代码" class="headerlink" title="10.写代码"></a>10.写代码</h1><p>终于到写代码的阶段了，其实到这时候，是最容易的。</p>
+<p>写代码就是体力活了，不是脑力活了。</p>
+<h1 id="11-自测"><a href="#11-自测" class="headerlink" title="11.自测"></a>11.自测</h1><p>写完代码，我们需要自测，自己的功能会不会有什么问题。</p>
+<p>这里可能需要自己造一造数据，跑一跑 看看和预想的是不是一样的。</p>
+<h1 id="12-联调"><a href="#12-联调" class="headerlink" title="12.联调"></a>12.联调</h1><p>自己的模块可能会涉及到其他模块之间的一个交互，或者和前端的一个交互。</p>
+<p>所以需要其他同学配合一起来测试。</p>
+<p>这里就有很多沟通工作了，因为其他同学可能手头有自己的活，那么就要协调一个时间来一起测试。</p>
+<p>这一步也是很费时间的，其费时关键是要等，要等其他同学有空和你联调，而且往往不是联调一次就能解决问题的。</p>
+<p>所以 在评估开发时间的时候 也要考虑到联调的时间。</p>
+<p>这也是大厂研发效率低的地方，但上百人开发的项目，这种沟通上消耗也是在所难免的。</p>
+<h1 id="13-交给测试"><a href="#13-交给测试" class="headerlink" title="13.交给测试"></a>13.交给测试</h1><p>自己的代码，自己测 一般都测不出什么问题，需要交给测试同学来给你测一测。</p>
+<p>这里如果测试同学测出问题，你就要判断确实有问题还是 测试方式不对，如果有问题就要修改，在提给测试，反反复复这么几轮，直到测试同学测试没问题了。</p>
+<p>这个过程也是累心的。</p>
+<h1 id="14-code-review"><a href="#14-code-review" class="headerlink" title="14.code review"></a>14.code review</h1><p>代码合入主干之前，需要 项目组的同学一起来评审一下你的代码。</p>
+<p>之前是评审设计，看设计上有没有什么缺失，这次是大家来看看你代码写的怎么样。</p>
+<p>例如合入主干会不会有什么问题，代码兼容性做的好不好，接口设计的好不好，甚至字段，函数，变量名，命名合不合理。</p>
+<p>都要经过大家的评审，如果有问题就还是要改。</p>
+<p>如果没有问题一般 大家会给+2（就是通过的意思），这样就可以合入主干了。</p>
+<h1 id="15-合入主干"><a href="#15-合入主干" class="headerlink" title="15.合入主干"></a>15.合入主干</h1><p>合入主干为什么会单独列出来呢。</p>
+<p>其实合入主干是很重要的，经常是自己的代码没问题，但合入主干之后就有问题了。</p>
+<p>一般就是合入主干的时候有冲突，例如你从主干拉出一个分支，另一个同学从主干拉出一个分支，而且两个分支修改了同一个模块，如果另一个同学提前合入主干，你在合入主干的时候就会有代码冲突。</p>
+<p>在解决代码冲突的时候 就会修改别人的代码，这个过程很容易产生新的bug。</p>
+<p>一般合入主干之后，测试同学还要重新跑一个全量测试，才能放心发布。</p>
+<h1 id="16-发布"><a href="#16-发布" class="headerlink" title="16.发布"></a>16.发布</h1><p>最后一步就是发布了。</p>
+<p>发布其实就是把主干的代码更新到线上的服务器上。</p>
+<p>一些还没有工作的同学，可能不太理解究竟什么是发布。</p>
+<p>用大白话来讲，就是把 本地的代码或者某台机器的代码，编译成可执行文件，然后更新到 线上的服务器（一个独立的集群，专门处理线上的流量）并运行起来。</p>
+<p>上线是最重要的一步了，也很容易出问题，因为一个大型项目，其上线的过程都非常复杂（要更新上百台机器的集群），而且要考虑线上新版和旧版本的兼容问题。</p>
+<p>这也是为什么大厂项目都选择深夜上线，因为深夜在线用户最少，如果出问题，影响的用户会比较少，可以快速修复。</p>
+<p>所以大家经常看到 某大厂程序员深夜上线发布版本之类的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>好了，整整讲了十六个步骤！把大厂研发流程中 具体都有哪一步，为什么要这么做，都分析的很清楚了。</p>
+<p>不过在大厂也不是所有部门都按照这个流程来的，每个部门都有自己玩法，各个部门也不太统一。</p>
+<p>我这里是介绍的是已经比较规范的流程，但流程越正规，研发效率就越低，想要提高效率，就是简化流程，简化流程，就会提高项目出错的概率。</p>
+<p>所以这也是一个相互权衡的过程，每一个部门可能根据自己的业务特点，适当简化流程。</p>
+<p>好了，讲了这么多，希望对录友们有所启发。</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://programmercarl.com/%E5%89%8D%E5%BA%8F/%E4%BA%92%E8%81%94%E7%BD%91%E5%A4%A7%E5%8E%82%E7%A0%94%E5%8F%91%E6%B5%81%E7%A8%8B.html#_1-%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3">https://programmercarl.com/%E5%89%8D%E5%BA%8F/%E4%BA%92%E8%81%94%E7%BD%91%E5%A4%A7%E5%8E%82%E7%A0%94%E5%8F%91%E6%B5%81%E7%A8%8B.html#_1-%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3</a></p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">星巴克打折了哎，请我喝咖啡吧</div><div id="qr" style="display:none;"><div style="display:inline-block"><a href="/images/alipay_qr_code.jpg"><img loading="lazy" src="/images/alipay_qr_code.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a href="/images/wechat_qr_code.jpg"><img loading="lazy" src="/images/wechat_qr_code.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>orcl</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://example.com/2022/04/07/development-process/" title="大厂开发流程">http://example.com/2022/04/07/development-process/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/2022/03/24/daily-development-String/" rel="next" title="日常开发中，String常用的方法"><span class="post-nav-text">日常开发中，String常用的方法</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div id="waline"></div><script>window.CONFIG.waline.config.path = "/2022/04/07/development-process/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> orcl</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.1.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.8.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-20T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#DAA520" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="想要搜些什么？" value=""></div><div id="local-search-result"></div></div></div></body></html>
