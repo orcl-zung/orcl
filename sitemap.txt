@@ -1,3 +1,4 @@
+http://example.com/2022/06/06/development-specification/
 http://example.com/2022/04/07/development-process/
 http://example.com/2022/03/24/daily-development-String/
 http://example.com/links/index.html
@@ -8,5 +9,6 @@ http://example.com/
 http://example.com/tags/Java%E5%85%AB%E8%82%A1%E6%96%87/
 http://example.com/tags/%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/
 http://example.com/tags/%E8%BF%9B%E5%87%BB%E5%A4%A7%E5%8E%82/
+http://example.com/tags/%E6%B2%89%E6%B7%80/
 http://example.com/categories/%E5%9F%BA%E7%A1%80%E4%B8%8D%E7%89%A2%EF%BC%8C%E5%9C%B0%E5%8A%A8%E5%B1%B1%E6%91%87/
 http://example.com/categories/%E7%95%A5%E7%9F%A5%E4%B8%80%E4%BA%8C/
